@@ -1,8 +1,5 @@
 %let route = /home/u63636519/;
 
-
-
-
 Libname hospi17 xlsx "&route./hospi/Hospi_2017.xlsx";
 Libname hospi18 xlsx "&route./hospi/Hospi_2018.xlsx";
 Libname hospi19 xlsx "&route./hospi/Hospi_2019.xlsx";
@@ -25,23 +22,3 @@ proc sql;
 		from exo6T as ex group by ex.cat;
 run;
 
-
-
-/*
-7   Les  deux  premiers  caractères  du  N°  finess  correspondent  au  département.  Indiquez  le  nombre
-d’établissement par catégorie (cat) par région.
-*/
-
-proc sql;
-	create table exo7_1 as
-		select 
-			distinct cat as cat,
-			substr(finess, 1, 2) as finess2,  
-			count(finess) as  nombre
-		from hospi17.etablissement
-		
-		group by 
-			cat,
-			finess2
-         ;
-run;
